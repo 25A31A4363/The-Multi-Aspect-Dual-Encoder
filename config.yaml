@@ -1,0 +1,9 @@
+dataset_path: "src/dataset/candidates.csv"
+output_path: "outputs/top_candidates.csv"
+model_name: "BAAI/bge-large-en-v1.5"
+cache_path: "outputs/embeddings_cache.sqlite"
+default_weights:
+  w1: 0.4
+  w2: 0.4
+  w3: 0.2
+top_n: 10

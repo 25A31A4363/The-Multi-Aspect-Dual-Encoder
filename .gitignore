@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Dataset files (large binary/data files — do not commit)
+src/dataset/candidates.jsonl
+src/dataset/*.docx
+src/dataset/._*
+src/dataset/reasonings_cache.json
+
+# Embedding cache (large SQLite DB — do not commit)
+outputs/embeddings_cache.sqlite
+
+# Output files (generated at runtime)
+outputs/top_candidates.csv
+outputs/top_candidates_explainability.csv
+
+# macOS metadata
+.DS_Store
+__MACOSX/
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env

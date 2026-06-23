@@ -1,0 +1,60 @@
+# Redrob Hackathon — Submission Metadata
+
+team_name: "SkyAid-AI-Rescue"
+
+primary_contact:
+  name: "Sripathi"
+  email: "25A31A4363@gmrit.edu.in"
+  phone: "+91-XXXXXXXXXX"
+
+team_members:
+  - name: "Sripathi"
+    email: "25A31A4363@gmrit.edu.in"
+    role: "ML Engineer / Team Lead"
+
+github_repo: "https://github.com/25A31A4363/The-Multi-Aspect-Dual-Encoder"
+
+sandbox_link: "https://huggingface.co/spaces/25A31A4363/redrob-ranker"
+
+reproduce_command: "python -m src.main --jd src/dataset/job_description.docx --top_n 100 --output_path outputs/top_candidates.csv"
+
+compute:
+  platform: "Windows 11 / Python 3.14"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.14"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: true
+  pre_computation_time_minutes: 15
+
+ai_tools_used:
+  - "Gemini"
+
+ai_usage_summary: |
+  Used Gemini (Antigravity) for code generation assistance, architecture discussion,
+  and automated code review. All candidate data remained local — no candidate profiles
+  were sent to any external API. The ranking logic, behavioral modifiers, and honeypot
+  detection rules were designed and validated by the team.
+
+methodology_summary: |
+  Multi-aspect dual encoder with structural candidate profile extraction. Each candidate
+  profile is parsed into three fields — job_titles, projects, and skills — before any
+  embedding is computed. Three separate BGE-large embeddings are generated per candidate
+  and cached in SQLite. The JD is similarly parsed into three aspects and embedded.
+  Cosine similarity is computed per aspect using vectorized NumPy operations.
+  A weighted formula (W1=0.4 titles, W2=0.4 projects, W3=0.2 skills) produces a
+  semantic score, which is then multiplied by a behavioral modifier derived from
+  23 redrob platform signals (response rate, activity recency, notice period, location,
+  YOE fit, consulting-only flag, specialization match). Honeypots are filtered by three
+  deterministic rules: expert skills with 0 duration, single job duration exceeding
+  total YOE by >1 year, and duration-date span mismatches >12 months.
+  Runtime: <10 seconds on cached embeddings. First-run pre-computation: ~15 minutes CPU.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
